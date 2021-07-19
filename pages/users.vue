@@ -1,9 +1,8 @@
 <template>
    <div>
-      <h1>Welcome to the Users Page</h1>
+      <nuxt-child />  
       <input type="text" placeholder="ID bolo" v-model = "userID"> 
       <button v-on:click = "buttonClicked()">Log my ID</button> <br><br>
-      <nuxt-child />
    </div>
 </template>
 
@@ -20,8 +19,8 @@ export default {
     },
     productBtnClicked: function() {
       this.$router.push('/products')
-    }
-  }
-
+    },
+  },
+  layout : 'users'
 }
 </script>
