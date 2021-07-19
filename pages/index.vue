@@ -2,7 +2,8 @@
     <div>
       <h1>Welcome to my page.</h1>
       <input type="text" placeholder="ID bolo" v-model = "userID"> 
-      <button v-on:click = "buttonClicked()">Log my ID</button>
+      <button v-on:click = "buttonClicked()">Log my ID</button> <br><br>
+      <button v-on:click = "productBtnClicked()">Product ID</button>
     </div>
 </template>
 
@@ -16,6 +17,9 @@ export default {
   methods: {
     buttonClicked: function() {
       this.$router.push('/users/' + this.userID)
+    },
+    productBtnClicked: function() {
+      this.$router.push('/products')
     }
   }
 
