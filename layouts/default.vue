@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h1>Admin Page</h1>
         <TheHeader @sidenavToggle = "displaySideNav = !displaySideNav"/>
         <TheSidenav :show = "displaySideNav" @close = "displaySideNav = false"/>
         <nuxt/>

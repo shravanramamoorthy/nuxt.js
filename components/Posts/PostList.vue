@@ -1,12 +1,12 @@
 <template>
   <div>
     <section>
-      <post-preview :is-admin ="isAdmin" :id = "'1'" :title = "'Title One'" :content="'gibersarasn'" />
-      <post-preview :is-admin ="isAdmin" :id = "'2'" :title = "'Title Two'" :content="'oooooooo'"/>
-      <post-preview :is-admin ="isAdmin" :id = "'3'" :title = "'Title Three'" :content="'kkkkkkkk'"/>
-      <post-preview :is-admin ="isAdmin" :id = "'4'" :title = "'Title Four'" :content="'roooooooo'"/>
-      <post-preview :is-admin ="isAdmin" :id = "'5'" :title = "'Title Five'" :content="'hehehehehheh'"/>
-      <post-preview :is-admin ="isAdmin" :id = "'6'" :title = "'Title Six'" :content="'kakakakak'"/>
+      <post-preview v-for = "post in posts" 
+        :key = "String(post.id)" 
+        :is-admin = "isAdmin" 
+        :id = "post.id" 
+        :title = "post.title" 
+        :content= "post.content" />
     </section>
   </div>
 </template>
@@ -18,7 +18,11 @@ export default {
     isAdmin: {
       type: Boolean,
       default: false
-    }
+    },
+    posts: {
+      type: Array,
+      required: true 
+    }, 
   },
   components: {
     'post-preview': postPrev
