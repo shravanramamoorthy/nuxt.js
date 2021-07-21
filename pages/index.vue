@@ -10,8 +10,8 @@ import PostList from '@/components/Posts/PostList.vue'
 export default {
   components: {
     PostList
-  }
-
+  },
+  layout: 'admin',
 }
 </script> 
 

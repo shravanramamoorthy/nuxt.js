@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h1>Admin Page</h1>
         <TheHeader @sidenavToggle = "displaySideNav = !displaySideNav"/>
         <TheSidenav :show = "displaySideNav" @close = "displaySideNav = false"/>
         <nuxt/>
@@ -24,5 +25,7 @@ export default {
 </script>
 
 <style scoped>
-
+h1 {
+        color : white;
+}
 </style>

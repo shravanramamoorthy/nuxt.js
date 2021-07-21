@@ -11,5 +11,6 @@ export default {
     components: {
         PostForm
     },
+    layout: 'admin',
 }
 </script>
