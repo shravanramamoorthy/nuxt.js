@@ -1,5 +1,5 @@
 <template>
-    <nuxt-link :to = "'/posts/' + id" >
+    <nuxt-link :to = "postLink" >
         <div>
             <img src="https://www.netscribes.com/wp-content/uploads/2019/06/Technology-Watch.jpg" alt="">
             <h2> {{title}} </h2>
@@ -12,11 +12,17 @@
 <script>
 export default { 
     props: {
+        isAdmin: {type: Boolean, required: true},
         id: {type: String, required: true},
         title: {type: String, required: true},
         content: {type: String, required: true},
         bgImg: {type: String}
-    } 
+    },
+    computed: {
+        postLink: function () {
+            return this.isAdmin ? '/admin/' + this.id : '/posts/' + this.id;
+        } 
+    }
 }
 
 
