@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit.prevent = "onSave">
+        <form @submit.prevent ="onSave">
             <AppControlInput v-model="editedPost.author"> Author Name </AppControlInput>
                     
             <AppControlInput v-model="editedPost.title"> Title </AppControlInput>
@@ -49,7 +49,7 @@ export default {
     },
     methods: {
         onSave: function() {
-            console.log (this.editedPost)
+            this.$emit('submit', this.editedPost)
         },
         onCancel: function() {
             this.$router.push('/admin')

@@ -29,6 +29,9 @@ export default {
   components: {
     PostList
   },
+  created() {
+    this.$store.dispatch('setPosts', this.loadedContent)
+  }
 }
 </script> 
 
