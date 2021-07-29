@@ -5,8 +5,10 @@
                     
             <AppControlInput v-model="editedPost.title"> Title </AppControlInput>
                     
-            <AppControlInput v-model="editedPost.thumbnailLink"> Thumbnail Link </AppControlInput>
-                    
+            <AppControlInput v-model="editedPost.thumbnail"> Thumbnail Link </AppControlInput>
+
+            <AppControlInput v-model="editedPost.preview"> Preview Text </AppControlInput>
+
             <AppControlInput
                     control-type="textarea"
                     v-model="editedPost.content">Content</AppControlInput>
@@ -39,12 +41,13 @@ export default {
     },
     data () {
         return {
-            editedPost: this.post ? {...this.post} : {
-                author: '',
-                title: '',
-                thumbnailLink:'',
-                content: ''
-            }
+                editedPost: this.post ? {...this.post} : {
+                    author: '',
+                    title: '',
+                    thumbnail:'',
+                    preview:'',
+                    content: ''
+                }
         }
     },
     methods: {

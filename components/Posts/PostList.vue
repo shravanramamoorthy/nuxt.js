@@ -6,7 +6,9 @@
         :is-admin = "isAdmin" 
         :id = "post.id" 
         :title = "post.title" 
-        :content= "post.content" />
+        :preview= "post.preview"
+        :content= "post.content"
+        :bgImg= "post.thumbnail" />
     </section>
   </div>
 </template>

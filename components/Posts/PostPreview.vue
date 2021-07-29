@@ -1,9 +1,9 @@
 <template>
     <nuxt-link :to = "postLink" >
         <div>
-            <img src="https://www.netscribes.com/wp-content/uploads/2019/06/Technology-Watch.jpg" alt="">
+            <div :style="{ backgroundImage: 'url(' + bgImg + ')'}"></div>
             <h2> {{title}} </h2>
-            <p> {{content}} </p>
+            <p> {{preview}} </p>
         </div>
     </nuxt-link>    
 </template>
@@ -16,7 +16,8 @@ export default {
         id: {type: String, required: true},
         title: {type: String, required: true},
         content: {type: String, required: true},
-        bgImg: {type: String}
+        preview: {type: String, required: true},
+        bgImg: {type: String, required: true}
     },
     computed: {
         postLink: function () {
@@ -32,9 +33,10 @@ a {
     text-decoration: none !important;
 }
 div {
-    width:22rem; height: 20rem;
+    width:22rem; height: 14rem;
     text-decoration: none;
-    border: 2px solid black; border-radius: 10px;
+    background-size: cover;
+    /* border: 2px solid black; border-radius: 10px; */
     padding: 2px;
     text-align: center;
     color: black

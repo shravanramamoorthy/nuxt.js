@@ -13,7 +13,6 @@
 import PostList from '@/components/Posts/PostList.vue'
 import AppButton from '@/components/UI-Components/AppButton'
 export default {
-  layout: 'admin',
   components: {
     PostList,
     AppButton
