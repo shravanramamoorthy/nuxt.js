@@ -3,7 +3,7 @@
         <AppButton @click = "$router.push('/admin/new-post')">Create New Post</AppButton>
         <hr>
         <h1>List of Existing Posts</h1>
-        <post-list isAdmin = "true" />
+        <post-list :isAdmin='true' :posts = "loadedContent"/>
     </div>
 
 </template>
@@ -12,11 +12,17 @@
 <script>
 import PostList from '@/components/Posts/PostList.vue'
 import AppButton from '@/components/UI-Components/AppButton'
+
 export default {
   components: {
     PostList,
     AppButton
   },
+  computed: {
+    loadedContent() {
+      return this.$store.getters.loadedPosts
+    }
+  }
 
 }
 </script>

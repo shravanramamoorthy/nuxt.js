@@ -31,7 +31,6 @@ export default {
       isLogin: true
     }
   },
-  layout: 'admin',
 }
 </script>
 
