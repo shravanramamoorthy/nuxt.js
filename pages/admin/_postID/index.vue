@@ -16,18 +16,15 @@ export default {
         return axios.get('https://nuxt-blog-7c432-default-rtdb.firebaseio.com/posts/' +  context.params.postID + '.json')
             .then(res => {
                 return {
-                    loadedPost: res.data
+                    loadedPost: {...res.data, id: context.params.postID}
                 }
             })
             .catch(e => context.error(e))
     },
     methods: {
         onSubmitted(editedPost) {
-            return axios.put('https://nuxt-blog-7c432-default-rtdb.firebaseio.com/posts/' +  this.$route.params.postID + '.json', editedPost)
-                .then(res => {
-                    this.$router.push('/admin')
-                })
+            this.$store.dispatch('editPost', editedPost).then(() => this.$router.push('/admin'))
         }
     }
 }
-</script>
+</script>   
