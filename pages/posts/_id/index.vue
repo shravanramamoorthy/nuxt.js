@@ -4,7 +4,7 @@
         <p>Title : {{loadedStuff.title}} </p>
         <p>Content: {{loadedStuff.content}}  </p>
         <p>Written by {{loadedStuff.author}} </p>
-        <p>Last Edit was at {{loadedStuff.updatedDate}} </p>
+        <p>Last Edit was at {{loadedStuff.updatedDate | date}} </p>
     </div>
 </template>
 
