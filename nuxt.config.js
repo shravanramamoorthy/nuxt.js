@@ -37,14 +37,12 @@ export default {
     '@nuxtjs/axios',
   ],
   axios: {
-    baseURL: "https://nuxt-blog-7c432-default-rtdb.firebaseio.com"
+    baseURL: "https://nuxt-blog-7c432-default-rtdb.firebaseio.com",
+    credentials: false
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  },
-  axios: {
-    baseURL: "https://nuxt-blog-7c432-default-rtdb.firebaseio.com"
   },
   router: {
     middleware: 'log'

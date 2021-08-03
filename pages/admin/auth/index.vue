@@ -1,10 +1,10 @@
 <template>
   <div class="admin-auth-page">
     <div class="auth-container">
-      <form @submit="onSubmit">
+      <form @submit.prevent="onSubmit()">
         <AppControlInput type="email" v-model="email">E-Mail Address</AppControlInput>
         <AppControlInput type="password" v-model="password">Password</AppControlInput>
-        <AppButton type="submit">{{ isLogin ? 'Login' : 'Sign Up' }}</AppButton>
+        <AppButton @click="lol()" type="submit">{{ isLogin ? 'Login' : 'Sign Up' }}</AppButton>
         <AppButton
           type="button"
           btn-style="inverted"
@@ -36,19 +36,21 @@ export default {
   },
   methods: {
     onSubmit() {
-      return this.$axios.$post(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' +
-         process.env.fbAPIkey , {
+      this.$axios.$post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' +
+        process.env.fbAPIkey, {
           email: this.email,
           password: this.password,
           returnSecureToken: true
         }
-      ).then(response => {
-        console.log(response)
+      ).then(result => {
+        console.log(result)
       })
       .catch(e => console.log(e))
+    },
+    lol() {
+      console.log(process.env.fbAPIkey)
     }
-  } 
+  }
 }
 </script>
 
@@ -66,4 +68,5 @@ export default {
   padding: 10px;
   box-sizing: border-box;
 }
+
 </style>
