@@ -36,8 +36,11 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$axios.$post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' +
-        process.env.fbAPIkey, {
+      let authURL = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + process.env.fbAPIkey
+      if (this.isLogin == false) {
+        authURL = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + process.env.fbAPIkey
+      }
+      this.$axios.$post(authURL, {
           email: this.email,
           password: this.password,
           returnSecureToken: true
