@@ -6,17 +6,17 @@
 
 <script>
 import PostForm from '@/components/Admin/PostForm.vue'
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
     components: {
         PostForm
     },
     asyncData(context) {
-        return axios.get('https://nuxt-blog-7c432-default-rtdb.firebaseio.com/posts/' +  context.params.postID + '.json')
-            .then(res => {
+        return context.app.$axios.$get('https://nuxt-blog-7c432-default-rtdb.firebaseio.com/posts/' +  context.params.postID + '.json')
+            .then(data => {
                 return {
-                    loadedPost: {...res.data, id: context.params.postID}
+                    loadedPost: {...data, id: context.params.postID}
                 }
             })
             .catch(e => context.error(e))

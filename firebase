@@ -1,0 +1,20 @@
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDBUfhztM3q3lmQgwfRzpr7kLuLIfnBUrE",
+    authDomain: "nuxt-blog-7c432.firebaseapp.com",
+    databaseURL: "https://nuxt-blog-7c432-default-rtdb.firebaseio.com",
+    projectId: "nuxt-blog-7c432",
+    storageBucket: "nuxt-blog-7c432.appspot.com",
+    messagingSenderId: "677368549268",
+    appId: "1:677368549268:web:37f4480b42dae36ba7c981"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
