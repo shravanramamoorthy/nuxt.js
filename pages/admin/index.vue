@@ -1,6 +1,7 @@
 <template>
     <div>
         <AppButton @click = "$router.push('/admin/new-post')">Create New Post</AppButton>
+        <AppButton style = "margin-left = 1rem" @click="logOut()" >Logout</AppButton>
         <hr>
         <h1>List of Existing Posts</h1>
         <post-list :isAdmin='true' :posts = "loadedContent"/>
@@ -23,8 +24,13 @@ export default {
     loadedContent() {
       return this.$store.getters.loadedPosts
     }
+  },
+  methods: {
+    logOut() {
+      this.$store.dispatch('logOut')
+      this.$router.push('/admin/auth')
+    }
   }
-
 }
 </script>
 

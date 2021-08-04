@@ -1,5 +1,6 @@
 // import axios from 'axios'
 import Vuex from 'vuex' 
+import cookie from 'js-cookie'
 
 const createStore = () => {
     return new Vuex.Store({
@@ -66,26 +67,44 @@ const createStore = () => {
                 ).then(result => {
                   vuexContext.commit('setToken', result.idToken)
                   localStorage.setItem('tokenID', result.idToken)
-                  localStorage.setItem('tokenExpiration', new Date().getTime() + result.expiresIn * 1000)
-                  vuexContext.dispatch('setLogoutTimer', result.expiresIn * 1000)
+                  localStorage.setItem('tokenExpiration', new Date().getTime() + Number.parseInt(result.expiresIn) * 1000)
+                  cookie.set('c-tokenID', result.idToken)
+                  cookie.set('c-tokenExpiration', new Date().getTime() + Number.parseInt(result.expiresIn) * 1000)
                 })
                 .catch(e => console.log(e))
             },
-            setLogoutTimer(vuexContext, duration) {
-                setTimeout(() => {
-                    vuexContext.commit('clearToken')
-                }, duration)
-            },
-            initAuth(vuexContext) {
-                const token = localStorage.getItem('tokenID')
-                const tokenExpiration = localStorage.getItem('tokenExpiration')
-                console.log(token)
-                console.log(tokenExpiration)
-                if (new Date().getTime() > +tokenExpiration || !token) {
-                    return
+            initAuth(vuexContext, req) {
+                let token;
+                let tokenExpiration;
+                if (req) {
+                    if (!req.headers.cookie) {
+                        return;
+                    }
+                    const cookieToken = req.headers.cookie.split(';').find(c => c.trim().startsWith('c-tokenID='))
+                    if (!cookieToken) {
+                        return;
+                    } 
+                    token = cookieToken.split('=')[1]
+                    tokenExpiration = req.headers.cookie.split(';').find(c => c.trim().startsWith('c-tokenExpiration=')).split('=')[1]
+                } else {
+                    token = localStorage.getItem('tokenID')
+                    tokenExpiration = localStorage.getItem('tokenExpiration')
                 }
-                vuexContext.dispatch('setLogoutTimer', +tokenExpiration - new Date().getTime())
+                if (new Date().getTime() > +tokenExpiration || !token) {
+                    vuexContext.dispatch('logOut')
+                    return;
+                }
                 vuexContext.commit('setToken', token)
+            },
+            logOut(vuexContext) {
+                vuexContext.commit('clearToken')
+                cookie.remove('c-tokenID')
+                cookie.remove('c-tokenExpiration')
+                if (process.client) {
+                    localStorage.removeItem('tokenID')
+                    localStorage.removeItem('tokenExpiration')
+                }
+
             }
         },
 
