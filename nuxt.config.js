@@ -1,3 +1,5 @@
+import bodyParser from 'body-parser'
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -15,6 +17,11 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+
+  /*
+   ** Customize the progress-bar color
+   */
+   loading: { color: '#ff0', height: '15px' },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
@@ -49,5 +56,9 @@ export default {
   },
   env: {
     fbAPIkey: 'AIzaSyDBUfhztM3q3lmQgwfRzpr7kLuLIfnBUrE'
-  }
+  },
+  serverMiddleware: [
+    bodyParser.json(),
+    '~/api'
+  ]
 }
