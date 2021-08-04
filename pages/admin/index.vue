@@ -18,7 +18,7 @@ export default {
     PostList,
     AppButton
   },
-  middleware: 'auth',
+  middleware: ['check-auth','auth'],
   computed: {
     loadedContent() {
       return this.$store.getters.loadedPosts
