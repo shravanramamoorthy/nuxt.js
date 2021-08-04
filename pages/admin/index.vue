@@ -18,6 +18,7 @@ export default {
     PostList,
     AppButton
   },
+  middleware: 'auth',
   computed: {
     loadedContent() {
       return this.$store.getters.loadedPosts

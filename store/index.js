@@ -5,7 +5,7 @@ const createStore = () => {
     return new Vuex.Store({
         state: {
             loadedPosts: [],
-            token: ''
+            token: null
         },
         mutations: {
             setPosts(state, posts) {
@@ -20,6 +20,9 @@ const createStore = () => {
             },
             setToken(state, token) {
                 state.token = token
+            },
+            clearToken(state) {
+                state.token = null
             }
 
         },
@@ -62,15 +65,23 @@ const createStore = () => {
                   }
                 ).then(result => {
                   vuexContext.commit('setToken', result.idToken)
-                  console.log(result)
+                  vuexContext.dispatch('setLogoutTimer', result.expiresIn * 1000)
                 })
                 .catch(e => console.log(e))
             },
+            setLogoutTimer(vuexContext, duration) {
+                setTimeout(() => {
+                    vuexContext.commit('clearToken')
+                }, duration)
+            }
         },
 
         getters: {
             loadedPosts(state) {
                 return state.loadedPosts
+            },
+            isAuthenticated(state) {
+                return state.token != null
             }
         }
     })

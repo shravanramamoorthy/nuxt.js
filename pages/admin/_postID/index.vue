@@ -9,6 +9,7 @@ import PostForm from '@/components/Admin/PostForm.vue'
 // import axios from 'axios'
 
 export default {
+    middleware: 'auth',
     components: {
         PostForm
     },
