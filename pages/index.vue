@@ -1,7 +1,9 @@
 <template>
-  <Tutorial/>
+  <div>
+    <p>Hi , I am shravan</p>
+  </div>
 </template>
 
 <script>
-export default {}
+export default {};
 </script>
