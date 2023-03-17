@@ -1,0 +1,14 @@
+name: Testing jest
+run-name: ${{ github.actor }} is testing out
+on: [push]
+jobs:
+  Run-Test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - name: Test the app
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: test # will run `yarn test` command
