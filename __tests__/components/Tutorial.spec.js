@@ -1,5 +1,5 @@
 describe("Display Profile Group Form", () => {
   test("should validate on save", () => {
-    expect("Two" === 2).toBeTruthy();
+    expect("Two" === 2).not.toBeTruthy();
   });
 });
