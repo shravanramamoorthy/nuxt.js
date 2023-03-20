@@ -1,5 +1,9 @@
 name: Testing jest
-on: [push]
+on:
+  push:
+    branches: ["master", "testing-jest"]
+  pull_request:
+    branches: ["master", "testing-jest"]
 jobs:
   Run-Test:
     runs-on: ubuntu-latest
